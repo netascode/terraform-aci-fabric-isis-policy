@@ -1,31 +1,10 @@
-variable "name" {
-  description = "Tenant name."
-  type        = string
+variable "redistribute_metric" {
+  description = "Redistribute metric. Minimum value: 1. Maximum value: 63."
+  type        = number
+  default     = 63
 
   validation {
-    condition     = can(regex("^[a-zA-Z0-9_.-]{0,64}$", var.name))
-    error_message = "Allowed characters: `a`-`z`, `A`-`Z`, `0`-`9`, `_`, `.`, `-`. Maximum characters: 64."
-  }
-}
-
-variable "alias" {
-  description = "Tenant alias."
-  type        = string
-  default     = ""
-
-  validation {
-    condition     = can(regex("^[a-zA-Z0-9_.-]{0,64}$", var.alias))
-    error_message = "Allowed characters: `a`-`z`, `A`-`Z`, `0`-`9`, `_`, `.`, `-`. Maximum characters: 64."
-  }
-}
-
-variable "description" {
-  description = "Tenant description."
-  type        = string
-  default     = ""
-
-  validation {
-    condition     = can(regex("^[a-zA-Z0-9\\!#$%()*,-./:;@ _{|}~?&+]{0,128}$", var.description))
-    error_message = "Allowed characters: `a`-`z`, `A`-`Z`, `0`-`9`, `\\`, `!`, `#`, `$`, `%`, `(`, `)`, `*`, `,`, `-`, `.`, `/`, `:`, `;`, `@`, ` `, `_`, `{`, `|`, }`, `~`, `?`, `&`, `+`. Maximum characters: 128."
+    condition     = var.redistribute_metric >= 1 && var.redistribute_metric <= 63
+    error_message = "Minimum value: 1. Maximum value: 63."
   }
 }

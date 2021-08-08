@@ -1,9 +1,7 @@
-resource "aci_rest" "fvTenant" {
-  dn         = "uni/tn-${var.name}"
-  class_name = "fvTenant"
+resource "aci_rest" "isisDomPol" {
+  dn         = "uni/fabric/isisDomP-default"
+  class_name = "isisDomPol"
   content = {
-    name      = var.name
-    nameAlias = var.alias
-    descr     = var.description
+    redistribMetric = var.redistribute_metric
   }
 }

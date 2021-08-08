@@ -1,7 +1,5 @@
-module "aci_scaffolding" {
-  source = "netascode/scaffolding/aci"
+module "aci_fabric_isis_policy" {
+  source = "netascode/fabric_isis_policy/aci"
 
-  name        = "ABC"
-  alias       = "ABC-ALIAS"
-  description = "My Description"
+  redistribute_metric = 60
 }
