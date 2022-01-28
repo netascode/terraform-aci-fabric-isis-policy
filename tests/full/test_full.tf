@@ -5,8 +5,8 @@ terraform {
     }
 
     aci = {
-      source  = "netascode/aci"
-      version = ">=0.2.0"
+      source  = "CiscoDevNet/aci"
+      version = ">=2.0.0"
     }
   }
 }
@@ -17,7 +17,7 @@ module "main" {
   redistribute_metric = 60
 }
 
-data "aci_rest" "isisDomPol" {
+data "aci_rest_managed" "isisDomPol" {
   dn = "uni/fabric/isisDomP-default"
 
   depends_on = [module.main]
@@ -28,7 +28,7 @@ resource "test_assertions" "isisDomPol" {
 
   equal "redistribMetric" {
     description = "redistribMetric"
-    got         = data.aci_rest.isisDomPol.content.redistribMetric
+    got         = data.aci_rest_managed.isisDomPol.content.redistribMetric
     want        = "60"
   }
 }

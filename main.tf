@@ -1,4 +1,4 @@
-resource "aci_rest" "isisDomPol" {
+resource "aci_rest_managed" "isisDomPol" {
   dn         = "uni/fabric/isisDomP-default"
   class_name = "isisDomPol"
   content = {
